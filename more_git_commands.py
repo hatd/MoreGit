@@ -21,8 +21,8 @@ class CopyGitCommand(sublime_plugin.TextCommand):
       (row,col) = self.view.rowcol(self.view.sel()[0].begin())
       remote_url = re.sub("^git@.*:", "https://github.com/", remote.decode("utf-8")[:-5])
       top_level = subprocess.Popen(["git", "rev-parse", "--show-toplevel"], **kwargs).stdout.read().decode("utf-8")[:-1]
-      file = file_name.replace(top_level, "")
-      link = remote_url + "/blob/develop" + file + "#L" + str(row + 1)
+      link = file_name.replace(top_level, remote_url + "/blob/develop")
+      link = link + "#L" + str(row + 1)
       sublime.set_clipboard(link)
     else:
       print("not have repo")
