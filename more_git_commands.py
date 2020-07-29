@@ -2,6 +2,7 @@ import os
 import sublime
 import sublime_plugin
 import subprocess
+import re
 
 class CopyGitCommand(sublime_plugin.TextCommand):
   def run(self, edit):
@@ -18,7 +19,7 @@ class CopyGitCommand(sublime_plugin.TextCommand):
 
     if remote:
       (row,col) = self.view.rowcol(self.view.sel()[0].begin())
-      remote_url = remote.decode("utf-8").replace("git@github.com:", "https://github.com/")[:-5]
+      remote_url = re.sub("^git@.*:", "https://github.com/", remote.decode("utf-8")[:-5])
       top_level = subprocess.Popen(["git", "rev-parse", "--show-toplevel"], **kwargs).stdout.read().decode("utf-8")[:-1]
       file = file_name.replace(top_level, "")
       link = remote_url + "/blob/develop" + file + "#L" + str(row + 1)
