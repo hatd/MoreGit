@@ -12,7 +12,7 @@ class CopyGitCommand(sublime_plugin.TextCommand):
     kwargs["stdout"] = subprocess.PIPE
     kwargs["cwd"] = dir_path
 
-    settings = sublime.load_settings("CopyGit.sublime-settings")
+    settings = sublime.load_settings("MoreGit.sublime-settings")
     remote_name = settings.get("remote_name")
     remote = subprocess.Popen(["git", "config", "--get", "remote." + remote_name + ".url"], **kwargs).stdout.read()
 
