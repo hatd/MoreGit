@@ -1,3 +1,4 @@
 {
-  "remote_name": "source"
+  // config remote name, use to open on github
+  "remote_name": "origin"
 }
