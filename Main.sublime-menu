@@ -23,9 +23,18 @@
               },
               { "caption": "-" },
               {
+                "caption": "Key Bindings",
+                "command": "edit_settings",
+                "args": {
+                  "base_file": "${packages}/MoreGit/Default (${platform}).sublime-keymap",
+                  "default": "// Key Bindings - User\n[\n\t$0\n]\n"
+                }
+              },
+              { "caption": "-" },
+              {
                 "command": "open_file",
                 "args": {
-                    "file": "${packages}/MoreGit/README.md",
+                  "file": "${packages}/MoreGit/README.md",
                 },
                 "caption": "Help"
               },
