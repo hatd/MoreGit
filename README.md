@@ -11,8 +11,8 @@ Something useful to me
 
 ## Feature
 
-### 1. Copy premalink 
-- like [this feature](https://docs.github.com/en/github/managing-your-work-on-github/creating-a-permanent-link-to-a-code-snippet) on web github, but with 1 line and with branch develop
+### 1. Copy premalink
+- like [this feature](https://docs.github.com/en/github/managing-your-work-on-github/creating-a-permanent-link-to-a-code-snippet) on web github
 - with remote: default is `origin`
 - key binding: `alt + c`
 

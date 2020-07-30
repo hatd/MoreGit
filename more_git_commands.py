@@ -18,12 +18,15 @@ class CopyGitCommand(sublime_plugin.TextCommand):
     remote = subprocess.Popen(["git", "config", "--get", "remote." + remote_name + ".url"], **kwargs).stdout.read()
 
     if remote:
-      (row,col) = self.view.rowcol(self.view.sel()[0].begin())
+      current_selection = self.view.sel()[0]
+      (row_begin,_) = self.view.rowcol(current_selection.begin())
+      (row_end,_) = self.view.rowcol(current_selection.end())
       remote_url = re.sub("^git@.*:", "https://github.com/", remote.decode("utf-8")[:-5])
       top_level = subprocess.Popen(["git", "rev-parse", "--show-toplevel"], **kwargs).stdout.read().decode("utf-8")[:-1]
       link = file_name.replace(top_level, remote_url + "/blob/develop")
-      link = link + "#L" + str(row + 1)
+      link = link + "#L" + str(row_begin + 1)
+      if row_begin != row_end:
+        link = link + "-" + str(row_end + 1)
       sublime.set_clipboard(link)
     else:
-      print("not have repo")
-
+      print("Please setting remote repo!!! Preference > Package Settings > MoreGit > Settings")
